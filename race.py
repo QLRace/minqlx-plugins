@@ -117,7 +117,7 @@ class race(minqlx.Plugin):
                 self.set_cvar("g_startingWeapons", "1")
                 self.set_cvar("g_infiniteAmmo", "0")
             elif map_name in PLASMA:
-                self.set_cvar("g_startingWfeapons", "131")
+                self.set_cvar("g_startingWeapons", "131")
                 self.set_cvar("g_infiniteAmmo", "1")
             elif map_name in ROCKET:
                 self.set_cvar("g_startingWeapons", "19")
