@@ -36,7 +36,7 @@ GAUNTLET_AND_MG = ("blockworld", "caep4", "climbworld", "df_etleague", "df_extre
 PLASMA = ("think1", "xproject", "plasmax", "wub_junk", "pgultimate", "tinyplams")
 ROCKET = ("runstolfer", "charon", "charon_bw", "kozmini1", "kozmini2", "kozmini3", "kozmini4", "kozmini5", "kozmini6",
           "kozmini7", "kozmini8", "jumpspace")
-GRENADE = ("grenadorade")
+GRENADE = ("grenadorade", "uprising")
 
 _RE_POWERUPS = re.compile(r'print ".+\^3 got the (Haste|Battle Suit|Quad Damage)!\^7\n"')
 
@@ -106,13 +106,12 @@ class race(minqlx.Plugin):
         if factory in ("qlrace_turbo", "qlrace_classic"):
             if map_name in GAUNTLET_AND_MG:
                 self.set_cvar("g_startingWeapons", "3")
-                if map_name in ("poptart", "climbworld"):
-                    self.set_cvar("g_infiniteAmmo", "1")
-                else:
-                    self.set_cvar("g_infiniteAmmo", "0")
+                infinite = 1 if map_name in ("poptart", "climbworld") else 0
+                self.set_cvar("g_infiniteAmmo", infinite)
             elif map_name in GRENADE:
                 self.set_cvar("g_startingWeapons", "9")
-                self.set_cvar("g_infiniteAmmo", "1")
+                infinite = 0 if map_name == "uprising" else 1
+                self.set_cvar("g_infiniteAmmo", infinite)
             elif map_name in GAUNTLET_ONLY:
                 self.set_cvar("g_startingWeapons", "1")
                 self.set_cvar("g_infiniteAmmo", "0")
@@ -155,15 +154,11 @@ class race(minqlx.Plugin):
                 self.set_cvar("g_startingAmmo_pg", "50")
 
             if self.get_cvar("qlx_raceMode", int) == 0:
-                if map_name == "k4n":
-                    self.set_cvar("g_velocity_gl", "700")
-                else:
-                    self.set_cvar("g_velocity_gl", "800")
+                gl_v = 700 if map_name == "k4n" else 800
+                self.set_cvar("g_velocity_gl", gl_v)
             elif self.get_cvar("qlx_raceMode", int) == 2:
-                if map_name == "dontlookdown":
-                    self.set_cvar("pmove_RampJump", "1")
-                else:
-                    self.set_cvar("pmove_RampJump", "0")
+                ramp_jump = 1 if map_name == "dontlookdown" else 0
+                self.set_cvar("pmove_RampJump", ramp_jump)
 
             if map_name == "puzzlemap":
                 self.set_cvar("g_infiniteAmmo", "1")
@@ -186,6 +181,11 @@ class race(minqlx.Plugin):
                 self.set_cvar("g_maxFlightFuel", "10000")
             else:
                 self.set_cvar("g_maxFlightFuel", "16000")
+
+            if map_name == "uprising":
+                self.set_cvar("g_startingAmmo_gl", 1)
+            else:
+                self.set_cvar("g_startingAmmo_gl", 10)
 
     def handle_vote_called(self, player, vote, args):
         """Cancels the vote when a duplicated map is voted for."""
