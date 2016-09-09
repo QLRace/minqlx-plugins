@@ -154,7 +154,7 @@ class race(minqlx.Plugin):
                 self.set_cvar("g_startingAmmo_pg", "50")
 
             if self.get_cvar("qlx_raceMode", int) == 0:
-                gl_v = 700 if map_name == "k4n" else 800
+                gl_v = 700 if map_name in ("k4n", "uprising") else 800
                 self.set_cvar("g_velocity_gl", gl_v)
             elif self.get_cvar("qlx_raceMode", int) == 2:
                 ramp_jump = 1 if map_name == "dontlookdown" else 0
