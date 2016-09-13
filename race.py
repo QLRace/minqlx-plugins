@@ -144,7 +144,8 @@ class race(minqlx.Plugin):
                 self.set_cvar("g_infiniteAmmo", "1")
             elif map_name == "zalupa":
                 self.set_cvar("g_startingWeapons", "64")
-                self.set_cvar("g_infiniteAmmo", "1")
+                self.set_cvar("g_infiniteAmmo", "0")
+                self.set_cvar("g_startingAmmo_rg", "30")
             else:
                 self.set_cvar("g_startingWeapons", "147")
                 self.set_cvar("g_infiniteAmmo", "1")
