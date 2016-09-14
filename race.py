@@ -36,7 +36,7 @@ GAUNTLET_AND_MG = ("blockworld", "caep4", "climbworld", "df_etleague", "df_extre
 PLASMA = ("think1", "xproject", "plasmax", "wub_junk", "pgultimate", "tinyplams")
 ROCKET = ("runstolfer", "charon", "charon_bw", "kozmini1", "kozmini2", "kozmini3", "kozmini4", "kozmini5", "kozmini6",
           "kozmini7", "kozmini8", "jumpspace")
-GRENADE = ("grenadorade", "uprising")
+GRENADE = ("grenadorade", "uprising", "xlarve06")
 
 _RE_POWERUPS = re.compile(r'print ".+\^3 got the (Haste|Battle Suit|Quad Damage)!\^7\n"')
 
@@ -110,7 +110,7 @@ class race(minqlx.Plugin):
                 self.set_cvar("g_infiniteAmmo", infinite)
             elif map_name in GRENADE:
                 self.set_cvar("g_startingWeapons", "9")
-                infinite = 0 if map_name == "uprising" else 1
+                infinite = 0 if map_name in ("uprising", "xlarve06") else 1
                 self.set_cvar("g_infiniteAmmo", infinite)
             elif map_name in GAUNTLET_ONLY:
                 self.set_cvar("g_startingWeapons", "1")
@@ -189,7 +189,7 @@ class race(minqlx.Plugin):
             else:
                 self.set_cvar("g_maxFlightFuel", "16000")
 
-            if map_name == "uprising":
+            if map_name in ("uprising", "xlarve06"):
                 self.set_cvar("g_startingAmmo_gl", 1)
             else:
                 self.set_cvar("g_startingAmmo_gl", 10)
