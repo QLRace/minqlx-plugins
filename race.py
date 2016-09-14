@@ -109,7 +109,7 @@ class race(minqlx.Plugin):
                 infinite = 1 if map_name in ("poptart", "climbworld") else 0
                 self.set_cvar("g_infiniteAmmo", infinite)
             elif map_name in GRENADE:
-                self.set_cvar("g_startingWeapons", "9")
+                self.set_cvar("g_startingWeapons", "11")
                 infinite = 0 if map_name in ("uprising", "xlarve06") else 1
                 self.set_cvar("g_infiniteAmmo", infinite)
             elif map_name in GAUNTLET_ONLY:
