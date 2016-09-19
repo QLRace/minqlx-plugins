@@ -25,15 +25,14 @@ HASTE = ("df_handbreaker4", "handbreaker4_long", "handbreaker", "df_piyofunjumps
 
 GAUNTLET_ONLY = ("k4n", "ndql", "dfwc_xlarve")
 GAUNTLET_AND_MG = ("blockworld", "caep4", "climbworld", "df_etleague", "df_extremepkr", "df_handbreaker4", "df_lickape",
-                   "df_lickcells""df_lickcells2", "df_lickfudge", "df_lickhq", "df_lickrevived", "df_lickrevived2",
-                   "df_licksux", "df_nodown", "df_o3jvelocity", "df_palmslane", "df_piyofunjumps", "df_qsnrun",
-                   "df_verihard", "drtrixiipro", "hangtime", "ingus", "marvin", "northrun", "pea_impostor", "poptart",
-                   "purpletorture", "r7_pyramid", "raveroll", "sl1k_tetris_easy", "snorjumpb1", "sodomia", "timelock2",
-                   "timelock4", "vanilla_03", "vanilla_04", "vanilla_07", "vanilla_10", "walkathon", "weirdwild",
-                   "wraiths", "yellowtorture", "run139", "inder_inder", "quartz", "timelock3", "daytime", "blub",
-                   "aa_lum", "kairos_nosf")
+                   "df_lickfudge", "df_lickhq", "df_lickrevived", "df_lickrevived2", "df_licksux", "df_nodown",
+                   "df_o3jvelocity", "df_palmslane", "df_piyofunjumps", "df_qsnrun", "df_verihard", "drtrixiipro",
+                   "hangtime", "ingus", "marvin", "northrun", "pea_impostor", "poptart", "purpletorture", "r7_pyramid",
+                   "raveroll", "sl1k_tetris_easy", "snorjumpb1", "sodomia", "timelock2", "timelock4", "vanilla_03",
+                   "vanilla_04", "vanilla_07", "vanilla_10", "walkathon", "weirdwild", "wraiths", "yellowtorture",
+                   "run139", "inder_inder", "quartz", "timelock3", "daytime", "blub", "aa_lum", "kairos_nosf")
 
-PLASMA = ("think1", "xproject", "plasmax", "wub_junk", "pgultimate", "tinyplams")
+PLASMA = ("think1", "xproject", "plasmax", "wub_junk", "pgultimate", "tinyplams", "df_lickcells", "df_lickcells2")
 ROCKET = ("runstolfer", "charon", "charon_bw", "kozmini1", "kozmini2", "kozmini3", "kozmini4", "kozmini5", "kozmini6",
           "kozmini7", "kozmini8", "jumpspace")
 GRENADE = ("grenadorade", "uprising", "xlarve06")
