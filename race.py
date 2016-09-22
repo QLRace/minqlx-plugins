@@ -31,7 +31,7 @@ GAUNTLET_AND_MG = ("blockworld", "caep4", "climbworld", "df_etleague", "df_extre
                    "raveroll", "sl1k_tetris_easy", "snorjumpb1", "sodomia", "timelock2", "timelock4", "vanilla_03",
                    "vanilla_04", "vanilla_07", "vanilla_10", "walkathon", "weirdwild", "wraiths", "yellowtorture",
                    "run139", "inder_inder", "quartz", "timelock3", "daytime", "blub", "aa_lum", "kairos_nosf",
-                   "aa_torture", "cube_torture")
+                   "aa_torture", "cube_torture", "track_comp", "track_comp_barrier")
 
 PLASMA = ("think1", "xproject", "plasmax", "wub_junk", "pgultimate", "tinyplams", "df_lickcells", "df_lickcells2")
 ROCKET = ("runstolfer", "charon", "charon_bw", "kozmini1", "kozmini2", "kozmini3", "kozmini4", "kozmini5", "kozmini6",
@@ -145,20 +145,12 @@ class race(minqlx.Plugin):
             elif map_name == "zalupa":
                 self.set_cvar("g_startingWeapons", 64)
                 self.set_cvar("g_infiniteAmmo", 0)
-                self.set_cvar("g_startingAmmo_rg", 30)
+            elif map_name == "track_comp_weap":
+                self.set_cvar("g_startingWeapons", 91)
+                self.set_cvar("g_infiniteAmmo", 0)
             else:
                 self.set_cvar("g_startingWeapons", 147)
                 self.set_cvar("g_infiniteAmmo", 1)
-
-            if map_name == "hangtime":
-                self.set_cvar("g_startingAmmo_mg", 1)
-            else:
-                self.set_cvar("g_startingAmmo_mg", 100)
-
-            if map_name == "wsm":
-                self.set_cvar("g_startingAmmo_pg", 1)
-            else:
-                self.set_cvar("g_startingAmmo_pg", 50)
 
             if self.get_cvar("qlx_raceMode", int) == 0:
                 gl_v = 700 if map_name in ("k4n", "uprising") else 800
@@ -189,21 +181,64 @@ class race(minqlx.Plugin):
             else:
                 self.set_cvar("g_maxFlightFuel", 16000)
 
+            if map_name == "hangtime":
+                self.set_cvar("g_startingAmmo_mg", 1)
+            else:
+                self.set_cvar("g_startingAmmo_mg", 100)
+
             if map_name in ("uprising", "xlarve06"):
                 self.set_cvar("g_startingAmmo_gl", 1)
             else:
                 self.set_cvar("g_startingAmmo_gl", 10)
 
-            if map_name == "track_comp":
-                self.set_cvar("g_startingWeapons", 3)
-                self.set_cvar("g_infiniteAmmo", 0)
+            if map_name == "track_comp_weap":
+                self.set_cvar("g_startingAmmo_rl", 10)
+            else:
+                self.set_cvar("g_startingAmmo_rl", 5)
+
+            if map_name == "zalupa":
+                self.set_cvar("g_startingAmmo_rg", 30)
+            else:
+                self.set_cvar("g_startingAmmo_rg", 5)
+
+            if map_name == "wsm":
+                self.set_cvar("g_startingAmmo_pg", 1)
+            else:
+                self.set_cvar("g_startingAmmo_pg", 50)
+
+            if map_name in ("track_comp", "track_comp_barriers"):
                 self.set_cvar("pmove_noPlayerClip", 0)
                 self.set_cvar("g_damage_g", 1)
                 self.set_cvar("g_damage_mg", 1)
                 self.set_cvar("g_knockback_g", 0)
-                self.set_cvar("g_knockback_g", 0)
+                self.set_cvar("g_knockback_mg", 0)
+            elif map_name == "track_comp_weap":
+                self.set_cvar("pmove_noPlayerClip", 0)
+                self.set_cvar("g_damage_g", 25)
+                self.set_cvar("g_damage_mg", 3)
+                self.set_cvar("g_damage_gl", 20)
+                self.set_cvar("g_damage_rl", 20)
+                self.set_cvar("g_damage_rg", 10)
+                self.set_cvar("g_knockback_g", 1.2)
+                self.set_cvar("g_knockback_mg", 0)
+                self.set_cvar("g_knockback_gl", 1.2)
+                self.set_cvar("g_knockback_rl", 1)
+                self.set_cvar("g_knockback_rg", 3.5)
             else:
                 self.set_cvar("pmove_noPlayerClip", 1)
+                self.set_cvar("g_damage_g", 50)
+                self.set_cvar("g_damage_mg", 5)
+                self.set_cvar("g_damage_gl", 100)
+                self.set_cvar("g_damage_rl", 100)
+                self.set_cvar("g_damage_rg", 80)
+                self.set_cvar("g_knockback_g", 1)
+                self.set_cvar("g_knockback_mg", 1)
+                self.set_cvar("g_knockback_gl", 1.1)
+                if self.get_cvar("qlx_raceMode", int) == 0:
+                    self.set_cvar("g_knockback_rl", 0.9)
+                elif self.get_cvar("qlx_raceMode", int) == 2:
+                    self.set_cvar("g_knockback_rl", 1.1)
+                self.set_cvar("g_knockback_rg", 0.85)
 
     def handle_vote_called(self, player, vote, args):
         """Cancels the vote when a duplicated map is voted for."""
