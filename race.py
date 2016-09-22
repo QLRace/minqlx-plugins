@@ -21,7 +21,7 @@ HASTE = ("df_handbreaker4", "handbreaker4_long", "handbreaker", "df_piyofunjumps
          "bounce", "df_nodown", "df_etleague", "df_extremepkr", "labyrinth", "airmaxjumps", "sarcasmjump", "criclejump",
          "df_verihard", "cursed_temple", "skacharohuth", "randommap", "just_jump_2", "just_jump_3", "criclejump",
          "eatme", "wernerjump", "bloodydave", "tranquil", "et_map2", "et_map3", "et_map4", "et_map5", "zeel_ponpon",
-         "snorjumpb1", "snorjump2", "piyojump2", "woftct", "apex", "runkull")
+         "snorjumpb1", "snorjump2", "piyojump2", "woftct", "apex", "runkull", "snakejumps2")
 
 GAUNTLET_ONLY = ("k4n", "ndql", "dfwc_xlarve")
 GAUNTLET_AND_MG = ("blockworld", "caep4", "climbworld", "df_etleague", "df_extremepkr", "df_handbreaker4", "df_lickape",
@@ -651,7 +651,7 @@ class race(minqlx.Plugin):
         if self.game.map.lower() == "track_comp":
             channel.reply("!loadpos is disabled on track_comp")
             return minqlx.RET_STOP_ALL
-        
+
         if player.team != "spectator":
             if player.steam_id in self.savepos:
                 self.move_player[player.steam_id] = self.savepos[player.steam_id]
