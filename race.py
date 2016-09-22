@@ -224,8 +224,11 @@ class race(minqlx.Plugin):
                 self.set_cvar("g_knockback_gl", 1.2)
                 self.set_cvar("g_knockback_rl", 1)
                 self.set_cvar("g_knockback_rg", 3.5)
+                self.set_cvar("g_splashdamage_gl", 20)
+                self.set_cvar("g_splashdamage_rl", 16)
             else:
                 self.set_cvar("pmove_noPlayerClip", 1)
+                # rest is not needed but whatever.
                 self.set_cvar("g_damage_g", 50)
                 self.set_cvar("g_damage_mg", 5)
                 self.set_cvar("g_damage_gl", 100)
@@ -234,6 +237,8 @@ class race(minqlx.Plugin):
                 self.set_cvar("g_knockback_g", 1)
                 self.set_cvar("g_knockback_mg", 1)
                 self.set_cvar("g_knockback_gl", 1.1)
+                self.set_cvar("g_splashdamage_gl", 100)
+                self.set_cvar("g_splashdamage_rl", 84)
                 if self.get_cvar("qlx_raceMode", int) == 0:
                     self.set_cvar("g_knockback_rl", 0.9)
                 elif self.get_cvar("qlx_raceMode", int) == 2:
