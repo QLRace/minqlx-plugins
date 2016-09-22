@@ -195,6 +195,8 @@ class race(minqlx.Plugin):
                 self.set_cvar("g_startingAmmo_gl", 10)
 
             if map_name == "track_comp":
+                self.set_cvar("g_startingWeapons", 3)
+                self.set_cvar("g_infiniteAmmo", 0)
                 self.set_cvar("pmove_noPlayerClip", 0)
                 self.set_cvar("g_damage_g", 1)
                 self.set_cvar("g_damage_mg", 1)
