@@ -16,7 +16,7 @@ import time
 PARAMS = ({}, {"weapons": "false"}, {"physics": "classic"}, {"physics": "classic", "weapons": "false"})
 OLDTOP_URL = "https://cdn.rawgit.com/QLRace/oldtop/master/oldtop/"
 
-GOTO_DISABLED = ("ndql", "bounce", "df_coldrun", "wernerjump", "puzzlemap")
+GOTO_DISABLED = ("ndql", "bounce", "df_coldrun", "wernerjump", "puzzlemap", "track_comp")
 HASTE = ("df_handbreaker4", "handbreaker4_long", "handbreaker", "df_piyofunjumps", "funjumpsmap", "df_luna", "insane1",
          "bounce", "df_nodown", "df_etleague", "df_extremepkr", "labyrinth", "airmaxjumps", "sarcasmjump", "criclejump",
          "df_verihard", "cursed_temple", "skacharohuth", "randommap", "just_jump_2", "just_jump_3", "criclejump",
@@ -648,6 +648,10 @@ class race(minqlx.Plugin):
 
     def cmd_loadpos(self, player, msg, channel):
         """Loads saved position."""
+        if self.game.map.lower() == "track_comp":
+            channel.reply("!loadpos is disabled on track_comp")
+            return minqlx.RET_STOP_ALL
+        
         if player.team != "spectator":
             if player.steam_id in self.savepos:
                 self.move_player[player.steam_id] = self.savepos[player.steam_id]
