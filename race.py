@@ -16,7 +16,8 @@ import time
 PARAMS = ({}, {"weapons": "false"}, {"physics": "classic"}, {"physics": "classic", "weapons": "false"})
 OLDTOP_URL = "https://cdn.rawgit.com/QLRace/oldtop/master/oldtop/"
 
-GOTO_DISABLED = ("ndql", "bounce", "df_coldrun", "wernerjump", "puzzlemap", "track_comp")
+GOTO_DISABLED = ("ndql", "bounce", "df_coldrun", "wernerjump", "puzzlemap", "track_comp", "track_comp_barriers",
+                 "track_comp_weap")
 HASTE = ("df_handbreaker4", "handbreaker4_long", "handbreaker", "df_piyofunjumps", "funjumpsmap", "df_luna", "insane1",
          "bounce", "df_nodown", "df_etleague", "df_extremepkr", "labyrinth", "airmaxjumps", "sarcasmjump", "criclejump",
          "df_verihard", "cursed_temple", "skacharohuth", "randommap", "just_jump_2", "just_jump_3", "criclejump",
@@ -198,6 +199,8 @@ class race(minqlx.Plugin):
 
             if map_name == "zalupa":
                 self.set_cvar("g_startingAmmo_rg", 30)
+            elif map_name == "track_comp_weap":
+                self.set_cvar("g_startingAmmo_rg", 10)
             else:
                 self.set_cvar("g_startingAmmo_rg", 5)
 
@@ -222,12 +225,17 @@ class race(minqlx.Plugin):
                 self.set_cvar("g_knockback_g", 1.2)
                 self.set_cvar("g_knockback_mg", 0)
                 self.set_cvar("g_knockback_gl", 1.2)
+                self.set_cvar("g_knockback_gl_self", 0)
                 self.set_cvar("g_knockback_rl", 1)
-                self.set_cvar("g_knockback_rg", 3.5)
+                self.set_cvar("g_knockback_rl_self", 0)
+                self.set_cvar("g_knockback_rg", 10)
+                self.set_cvar("g_knockback_gl_self", 0)
                 self.set_cvar("g_splashdamage_gl", 20)
                 self.set_cvar("g_splashdamage_rl", 16)
             else:
                 self.set_cvar("pmove_noPlayerClip", 1)
+                self.set_cvar("g_knockback_gl_self", 1.10)
+                self.set_cvar("g_knockback_rl_self", 1.10)
                 # rest is not needed but whatever.
                 self.set_cvar("g_damage_g", 50)
                 self.set_cvar("g_damage_mg", 5)
@@ -242,7 +250,7 @@ class race(minqlx.Plugin):
                 if self.get_cvar("qlx_raceMode", int) == 0:
                     self.set_cvar("g_knockback_rl", 0.9)
                 elif self.get_cvar("qlx_raceMode", int) == 2:
-                    self.set_cvar("g_knockback_rl", 1.1)
+                    self.set_cvar("g_knockback_rl", 1.10)
                 self.set_cvar("g_knockback_rg", 0.85)
 
     def handle_vote_called(self, player, vote, args):
@@ -688,8 +696,8 @@ class race(minqlx.Plugin):
 
     def cmd_loadpos(self, player, msg, channel):
         """Loads saved position."""
-        if self.game.map.lower() == "track_comp":
-            channel.reply("!loadpos is disabled on track_comp")
+        if self.game.map.lower() in ("track_comp", "track_comp_barriers", "track_comp_weap"):
+            channel.reply("!loadpos is disabled on track_comp maps!")
             return minqlx.RET_STOP_ALL
 
         if player.team != "spectator":
