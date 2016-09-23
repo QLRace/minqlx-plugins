@@ -317,10 +317,12 @@ class race(minqlx.Plugin):
             self.frame.pop(player.steam_id, None)
 
     def handle_client_command(self, player, cmd):
-        """Spawns player right away if they use /kill and
-        removes them from goto and frame dicts."""
+        """Disables readyup command if warmup ready % is more
+        than 1. Spawns player right away if they use /kill and
+        Removes them from goto and frame dicts."""
         if cmd == "readyup" and self.get_cvar("sv_warmupReadyPercentage", float) > 1:
             player.tell("readyup is disabled since sv_warmupReadyPercentage is more than 1")
+            return minqlx.RET_STOP_EVENT
 
         if cmd == "kill" and player.team == "free":
             minqlx.player_spawn(player.id)
