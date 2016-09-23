@@ -229,7 +229,6 @@ class race(minqlx.Plugin):
                 self.set_cvar("g_knockback_rl", 1)
                 self.set_cvar("g_knockback_rl_self", 0)
                 self.set_cvar("g_knockback_rg", 10)
-                self.set_cvar("g_knockback_gl_self", 0)
                 self.set_cvar("g_splashdamage_gl", 20)
                 self.set_cvar("g_splashdamage_rl", 16)
             else:
