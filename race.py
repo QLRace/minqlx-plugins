@@ -319,6 +319,9 @@ class race(minqlx.Plugin):
     def handle_client_command(self, player, cmd):
         """Spawns player right away if they use /kill and
         removes them from goto and frame dicts."""
+        if cmd == "readyup" and self.get_cvar("sv_warmupReadyPercentage", float) > 1:
+            player.tell("readyup is disabled since sv_warmupReadyPercentage is more than 1")
+
         if cmd == "kill" and player.team == "free":
             minqlx.player_spawn(player.id)
             self.goto.pop(player.steam_id, None)
