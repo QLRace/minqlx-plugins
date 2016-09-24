@@ -340,6 +340,10 @@ class race(minqlx.Plugin):
             ms = (self.current_frame - self.frame[p]) * 25
             self.player(p).center_print(race.time_string(ms))
 
+        for p in self.teams()['free']:
+            if p.ping >= 500:  # could be 999, but 500 to be safe
+                p.health = -999
+
         # makes new dict with dead players removed
         self.goto = {p: score for p, score in self.goto.items() if self.player(p).health > 0}
 
