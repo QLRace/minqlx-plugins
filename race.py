@@ -341,7 +341,8 @@ class race(minqlx.Plugin):
             self.player(p).center_print(race.time_string(ms))
 
         for p in self.teams()['free']:
-            if self.game.map.lower() != "koz25" and p.ping >= 980:  # could be 999, but 980 to be safe
+            # Kill player if they 999 as it is possible to cheat by passing through triggers.
+            if self.game and self.game.map.lower() != "koz25" and p.ping >= 980:
                 p.health = -999
 
         # makes new dict with dead players removed
