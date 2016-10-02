@@ -150,6 +150,9 @@ class race(minqlx.Plugin):
             elif map_name == "track_comp_weap":
                 self.set_cvar("g_startingWeapons", "91")
                 self.set_cvar("g_infiniteAmmo", "0")
+            elif map_name == "tomb":
+                self.set_cvar("g_startingWeapons", "131")
+                self.set_cvar("g_infiniteAmmo", "0")
             else:
                 self.set_cvar("g_startingWeapons", "147")
                 self.set_cvar("g_infiniteAmmo", "1")
@@ -180,6 +183,8 @@ class race(minqlx.Plugin):
 
             if map_name == "pornstarghost3":
                 self.set_cvar("g_maxFlightFuel", "10000")
+            elif map_name == "tomb":
+                self.set_cvar("g_maxFlightFuel", "2500")
             else:
                 self.set_cvar("g_maxFlightFuel", "16000")
 
@@ -207,6 +212,8 @@ class race(minqlx.Plugin):
 
             if map_name == "wsm":
                 self.set_cvar("g_startingAmmo_pg", "1")
+            elif map_name == "tomb":
+                self.set_cvar("g_startingAmmo_pg", "5")
             else:
                 self.set_cvar("g_startingAmmo_pg", "50")
 
