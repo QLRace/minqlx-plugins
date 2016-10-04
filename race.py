@@ -185,6 +185,8 @@ class race(minqlx.Plugin):
                 self.set_cvar("g_maxFlightFuel", "10000")
             elif map_name == "tomb":
                 self.set_cvar("g_maxFlightFuel", "2500")
+            elif map_name == "tatmt_long":
+                self.set_cvar("g_maxFlightFuel", "500")
             else:
                 self.set_cvar("g_maxFlightFuel", "16000")
 
