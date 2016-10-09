@@ -17,7 +17,7 @@ PARAMS = ({}, {"weapons": "false"}, {"physics": "classic"}, {"physics": "classic
 OLDTOP_URL = "https://cdn.rawgit.com/QLRace/oldtop/master/oldtop/"
 
 GOTO_DISABLED = ("ndql", "bounce", "df_coldrun", "wernerjump", "puzzlemap", "track_comp", "track_comp_barriers",
-                 "track_comp_weap")
+                 "track_comp_weap", "gl")
 HASTE = ("df_handbreaker4", "handbreaker4_long", "handbreaker", "df_piyofunjumps", "funjumpsmap", "df_luna", "insane1",
          "bounce", "df_nodown", "df_etleague", "df_extremepkr", "labyrinth", "airmaxjumps", "sarcasmjump", "criclejump",
          "df_verihard", "cursed_temple", "skacharohuth", "randommap", "just_jump_2", "just_jump_3", "criclejump",
@@ -83,6 +83,7 @@ class race(minqlx.Plugin):
         self.savepos = {}  # Saved player positions. {steam_id: player.state.position}
         self.frame = {}  # The frame when player used !timer. {steam_id: frame}
         self.current_frame = 0  # Number of frames the map has been playing for.
+        self.map_restart = False
 
         self.maps = []
         self.old_maps = []
@@ -220,6 +221,8 @@ class race(minqlx.Plugin):
                 self.set_cvar("g_startingAmmo_pg", "50")
 
             if map_name == "gl":
+                if self.get_cvar("g_startingHealth", int) != 3000:
+                    self.map_restart = True
                 self.set_cvar("g_startingHealth", "3000")
             else:
                 self.set_cvar("g_startingHealth", "100")
@@ -280,6 +283,10 @@ class race(minqlx.Plugin):
         Moves player to position if they used !goto or !loadpos.
         Removes player from frame dict."""
         map_name = self.game.map.lower()
+        if self.map_restart:
+            self.map_restart = False
+            minqlx.console_command("map_restart")
+
         if player.team == "free":
             player.is_alive = True
 
@@ -287,6 +294,7 @@ class race(minqlx.Plugin):
                 player.powerups(quad=999999)
             elif map_name in HASTE:
                 player.powerups(haste=999999)
+
         if player.steam_id in self.move_player and player.is_alive:
             if player.steam_id not in self.goto:
                 player.tell("^6Your time will not count, unless you kill yourself.")
@@ -704,8 +712,8 @@ class race(minqlx.Plugin):
 
     def cmd_loadpos(self, player, msg, channel):
         """Loads saved position."""
-        if self.game.map.lower() in ("track_comp", "track_comp_barriers", "track_comp_weap"):
-            channel.reply("!loadpos is disabled on track_comp maps!")
+        if self.game.map.lower() in GOTO_DISABLED:
+            channel.reply("^3!loadpos ^2is disabled on ^3{}".format(self.game.map))
             return minqlx.RET_STOP_ALL
 
         if player.team != "spectator":
