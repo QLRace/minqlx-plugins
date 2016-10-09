@@ -671,7 +671,7 @@ class race(minqlx.Plugin):
         Player needs to kill themselves/rejoin for a time to count."""
         map_name = self.game.map.lower()
         if map_name in GOTO_DISABLED:
-            player.tell("!goto is disabled on {}".format(map_name))
+            player.tell("^1!goto is disabled on {}".format(map_name))
             return minqlx.RET_STOP_ALL
 
         if len(msg) == 2:
@@ -713,7 +713,7 @@ class race(minqlx.Plugin):
     def cmd_loadpos(self, player, msg, channel):
         """Loads saved position."""
         if self.game.map.lower() in GOTO_DISABLED:
-            channel.reply("^3!loadpos ^2is disabled on ^3{}".format(self.game.map))
+            channel.reply("^1!loadpos is disabled on {}".format(self.game.map))
             return minqlx.RET_STOP_ALL
 
         if player.team != "spectator":
