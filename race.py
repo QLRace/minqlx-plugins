@@ -33,7 +33,8 @@ GAUNTLET_AND_MG = ("blockworld", "caep4", "climbworld", "df_etleague", "df_extre
                    "raveroll", "sl1k_tetris_easy", "snorjumpb1", "sodomia", "timelock2", "timelock4", "vanilla_03",
                    "vanilla_04", "vanilla_07", "vanilla_10", "walkathon", "weirdwild", "wraiths", "yellowtorture",
                    "run139", "inder_inder", "quartz", "timelock3", "daytime", "blub", "aa_lum", "kairos_nosf",
-                   "aa_torture", "cube_torture", "track_comp", "track_comp_barriers", "dfru_xlarve", "track", "gl")
+                   "aa_torture", "cube_torture", "track_comp", "track_comp_barriers", "dfru_xlarve", "track", "gl",
+                   "qportal")
 
 PLASMA = ("think1", "xproject", "plasmax", "wub_junk", "pgultimate", "tinyplams", "df_lickcells", "df_lickcells2")
 ROCKET = ("runstolfer", "charon", "charon_bw", "kozmini1", "kozmini2", "kozmini3", "kozmini4", "kozmini5", "kozmini6",
@@ -109,7 +110,7 @@ class race(minqlx.Plugin):
         if factory in ("qlrace_turbo", "qlrace_classic"):
             if map_name in GAUNTLET_AND_MG:
                 self.set_cvar("g_startingWeapons", "3")
-                infinite = "1" if map_name in ("poptart", "climbworld") else "0"
+                infinite = "1" if map_name in ("poptart", "climbworld", "qportal") else "0"
                 self.set_cvar("g_infiniteAmmo", infinite)
             elif map_name in GRENADE:
                 self.set_cvar("g_startingWeapons", "11")
