@@ -156,8 +156,8 @@ class race(minqlx.Plugin):
                 self.set_cvar("g_startingWeapons", "131")
                 self.set_cvar("g_infiniteAmmo", "0")
             elif map_name == "bumblbee":
-                self.set_cvar("g_startingWeapons", "131")
-                self.set_cvar("g_infiniteAmmo", "0")
+                self.set_cvar("g_startingWeapons", "155")
+                self.set_cvar("g_infiniteAmmo", "1")
             else:
                 self.set_cvar("g_startingWeapons", "147")
                 self.set_cvar("g_infiniteAmmo", "1")
