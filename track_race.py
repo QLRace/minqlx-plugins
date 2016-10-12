@@ -78,7 +78,7 @@ class track_race(minqlx.Plugin):
     def get_payload(self, data, mode, time):
         """Returns payload to post to QLRace.com."""
         player_id = int(data["STEAM_ID"])
-        name = re.sub(r"\^[0-9]", "", data["NAME"])
+        name = data["NAME"]
         return {"map": self.map_name, "mode": mode, "player_id": player_id, "name": name,
                 "time": time, "match_guid": data["MATCH_GUID"], "date": str(datetime.utcnow())}
 
