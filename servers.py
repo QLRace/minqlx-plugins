@@ -64,9 +64,9 @@ class servers(minqlx.Plugin):
     @minqlx.thread
     def get_servers(self, servers, channel, irc=False):
         """Gets and outputs info for all servers in `qlx_servers`."""
-        output = ["^5{:^22} | {:^62} | {}".format("IP", "sv_hostname", "Players")]
+        output = ["^5{:^22} | {:^32} | {:^30} | {}".format("IP", "sv_hostname", "Map", "Players")]
         for server in servers:
-            hostname, players = self.get_server_info(server)
+            hostname, players, map_name = self.get_server_info(server)
             if players:
                 if players[0] >= players[1]:
                     players = "^3{}/{}".format(players[0], players[1])
@@ -75,7 +75,7 @@ class servers(minqlx.Plugin):
             else:
                 players = "^1..."
 
-            output.append("{:22} | {:62} | {}".format(server, hostname, players))
+            output.append("{:22} | {:32} | {:30} | {}".format(server, hostname, map_name, players))
 
         if irc:
             reply_large_output(channel, output, max_amount=1, delay=2)
@@ -91,7 +91,7 @@ class servers(minqlx.Plugin):
             address[1] = int(address[1])
             server = a2s.ServerQuerier(address, 1)  # 1 second timeout
             info = server.get_info()
-            return info['server_name'], [info["player_count"], info["max_players"]]
+            return info['server_name'], [info["player_count"], info["max_players"], info['map_name']]
         except ValueError:
             return "Error: Invalid port", []
         except socket.gaierror:
