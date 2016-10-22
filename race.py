@@ -74,6 +74,7 @@ class race(minqlx.Plugin):
         self.add_command("maps", self.cmd_maps, usage="[prefix]", priority=minqlx.PRI_HIGH)
         self.add_command(("haste", "removehaste"), self.cmd_haste)
         self.add_command(("timer", "starttimer", "stoptimer"), self.cmd_timer)
+        self.add_command(("reset", "resettime", "resetscore"), self.cmd_reset)
         self.add_command(("commands", "cmds", "help"), self.cmd_commands, priority=minqlx.PRI_HIGH)
 
         self.set_cvar_once("qlx_raceMode", "0")  # 0 = Turbo/PQL, 2 = Classic/VQL
@@ -776,6 +777,15 @@ class race(minqlx.Plugin):
             else:
                 self.frame[player.steam_id] = self.current_frame
         return minqlx.RET_STOP_ALL
+
+    def cmd_reset(self, player, msg, channel):
+        """Resets a players time in race. It is for when you
+        complete a strafe time and you don't want it to save."""
+        if player.team == "spectator":
+            player.tell("^1You need to join the game to use this command.")
+        else:
+            player.score = 2147483647
+            player.tell("Your score(time) was reset.")
 
     def cmd_commands(self, player, msg, channel):
         """Outputs list of race commands."""
