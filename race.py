@@ -193,6 +193,8 @@ class race(minqlx.Plugin):
                 self.set_cvar("g_maxFlightFuel", "2500")
             elif map_name == "tatmt_long":
                 self.set_cvar("g_maxFlightFuel", "500")
+            elif map_name == "bokluk":
+                self.set_cvar("g_maxFlightFuel", "3500")
             else:
                 self.set_cvar("g_maxFlightFuel", "16000")
 
@@ -299,6 +301,8 @@ class race(minqlx.Plugin):
                 player.powerups(quad=999999)
             elif map_name in HASTE:
                 player.powerups(haste=999999)
+            elif map_name == "bokluk":
+                player.holdable = "flight"
 
         if player.steam_id in self.move_player and player.is_alive:
             if player.steam_id not in self.goto:
