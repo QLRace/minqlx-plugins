@@ -302,7 +302,7 @@ class race(minqlx.Plugin):
             elif map_name in HASTE:
                 player.powerups(haste=999999)
             elif map_name == "bokluk":
-                player.holdable = "flight"
+                player.flight(fuel=3500, max_fuel=3500)
 
         if player.steam_id in self.move_player and player.is_alive:
             if player.steam_id not in self.goto:
