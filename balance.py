@@ -46,7 +46,7 @@ class balance(minqlx.Plugin):
         self.add_command("balance", self.cmd_balance, 1)
         self.add_command(("teams", "teens"), self.cmd_teams)
         self.add_command("do", self.cmd_do, 1)
-        self.add_command(("agree", "a"), self.cmd_agree)
+        self.add_command(("agree", "a"), self.cmd_agree, client_cmd_perm=0)
         self.add_command(("ratings", "elos", "selo"), self.cmd_ratings)
 
         self.ratings_lock = threading.RLock()
@@ -60,7 +60,7 @@ class balance(minqlx.Plugin):
         self.in_countdown = False
 
         self.set_cvar_once("qlx_balanceUseLocal", "1")
-        self.set_cvar_once("qlx_balanceUrl", "qlstats.net:8080")
+        self.set_cvar_once("qlx_balanceUrl", "qlstats.net")
         self.set_cvar_once("qlx_balanceAuto", "1")
         self.set_cvar_once("qlx_balanceMinimumSuggestionDiff", "25")
         self.set_cvar_once("qlx_balanceApi", "elo")
