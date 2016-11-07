@@ -356,10 +356,11 @@ class race(minqlx.Plugin):
             ms = (self.current_frame - self.frame[p]) * 25
             self.player(p).center_print(race.time_string(ms))
 
-        for p in self.teams()['free']:
-            # Kill player if they 999 as it is possible to cheat by passing through triggers.
-            if self.game and self.game.map.lower() not in ("koz25", "hangtime", "hangtime2") and p.ping >= 990:
-                p.health = -999
+        if self.game and self.game.map.lower() not in ("koz25", "hangtime", "hangtime2"):
+            for p in self.teams()['free']:
+                # Kill player if they 999 as it is possible to cheat by passing through triggers.
+                if p.ping >= 990:
+                    p.health = -999
 
         # makes new dict with dead players removed
         self.goto = {p: score for p, score in self.goto.items() if self.player(p).health > 0}
