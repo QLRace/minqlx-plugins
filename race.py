@@ -356,7 +356,7 @@ class race(minqlx.Plugin):
             ms = (self.current_frame - self.frame[p]) * 25
             self.player(p).center_print(race.time_string(ms))
 
-        if self.game and self.game.map.lower() not in ("koz25", "hangtime", "hangtime2"):
+        if self.game and self.game.map.lower() not in ("koz25", "hangtime", "hangtime2", "climbworld"):
             for p in self.teams()['free']:
                 # Kill player if they 999 as it is possible to cheat by passing through triggers.
                 if p.ping >= 990:
