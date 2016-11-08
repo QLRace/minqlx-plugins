@@ -85,6 +85,7 @@ class race(minqlx.Plugin):
         self.savepos = {}  # Saved player positions. {steam_id: player.state.position}
         self.frame = {}  # The frame when player used !timer. {steam_id: frame}
         self.current_frame = 0  # Number of frames the map has been playing for.
+        self.lagged = {}
         self.map_restart = False
 
         self.maps = []
@@ -350,17 +351,31 @@ class race(minqlx.Plugin):
         """Increments current frame and center_prints timer to all
         player who used !timer. Also removes player from goto
         dict if they died(death event wasn't getting triggered)."""
+        if not self.game:
+            return
+
         self.current_frame += 1
 
         for p in self.frame:
             ms = (self.current_frame - self.frame[p]) * 25
             self.player(p).center_print(race.time_string(ms))
 
-        if self.game and self.game.map.lower() not in ("koz25", "hangtime", "hangtime2", "climbworld"):
-            for p in self.teams()['free']:
-                # Kill player if they 999 as it is possible to cheat by passing through triggers.
-                if p.ping >= 990:
-                    p.health = -999
+        for p in self.teams()['free']:
+            if p.steam_id not in self.lagged and p.ping >= 990:
+                p.velocity(x=0, y=0, z=0)
+                self.lagged[p.steam_id] = p.state.position
+
+        for steam_id in self.lagged:
+            try:
+                p = self.player(steam_id)
+            except minqlx.NonexistentPlayerError:
+                del self.lagged[steam_id]
+                continue
+
+            if p.ping < 990:
+                minqlx.set_position(p.id, self.lagged[steam_id])
+                p.velocity(x=0, y=0, z=0)
+                del self.lagged[steam_id]
 
         # makes new dict with dead players removed
         self.goto = {p: score for p, score in self.goto.items() if self.player(p).health > 0}
