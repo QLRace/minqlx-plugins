@@ -107,6 +107,7 @@ class race(minqlx.Plugin):
         self.get_maps()
         self.savepos = {}
         self.move_player = {}
+        self.lagged = {}
         self.current_frame = 0
 
         if factory in ("qlrace_turbo", "qlrace_classic"):
@@ -365,17 +366,21 @@ class race(minqlx.Plugin):
                 p.velocity(x=0, y=0, z=0)
                 self.lagged[p.steam_id] = p.state.position
 
+        delete = []
         for steam_id in self.lagged:
             try:
                 p = self.player(steam_id)
             except minqlx.NonexistentPlayerError:
-                del self.lagged[steam_id]
+                delete.append(steam_id)
                 continue
 
             if p.ping < 990:
                 minqlx.set_position(p.id, self.lagged[steam_id])
                 p.velocity(x=0, y=0, z=0)
-                del self.lagged[steam_id]
+                delete.append(steam_id)
+
+        for steam_id in delete:
+            del self.lagged[steam_id]
 
         # makes new dict with dead players removed
         self.goto = {p: score for p, score in self.goto.items() if self.player(p).health > 0}
