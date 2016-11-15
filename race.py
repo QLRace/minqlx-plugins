@@ -34,7 +34,7 @@ GAUNTLET_AND_MG = ("blockworld", "caep4", "climbworld", "df_etleague", "df_extre
                    "vanilla_04", "vanilla_07", "vanilla_10", "walkathon", "weirdwild", "wraiths", "yellowtorture",
                    "run139", "inder_inder", "quartz", "timelock3", "daytime", "blub", "aa_lum", "kairos_nosf",
                    "aa_torture", "cube_torture", "track_comp", "track_comp_barriers", "dfru_xlarve", "track", "gl",
-                   "qportal", "heaven_or_hell", "cpu_egypt", "bug4", "sunsetpads", "hangtime2", "hangy67")
+                   "qportal", "heaven_or_hell", "cpu_egypt", "bug4", "sunsetpads", "hangtime2", "hangy67", "jjm2")
 
 PLASMA = ("think1", "xproject", "plasmax", "wub_junk", "pgultimate", "tinyplams", "df_lickcells", "df_lickcells2")
 ROCKET = ("runstolfer", "charon", "charon_bw", "kozmini1", "kozmini2", "kozmini3", "kozmini4", "kozmini5", "kozmini6",
@@ -166,7 +166,7 @@ class race(minqlx.Plugin):
                 self.set_cvar("g_infiniteAmmo", "1")
 
             if self.get_cvar("qlx_raceMode", int) == 0:
-                gl_v = "700" if map_name in ("k4n", "uprising") else "800"
+                gl_v = "700" if map_name in ("k4n", "uprising", "jjm2") else "800"
                 self.set_cvar("g_velocity_gl", gl_v)
             elif self.get_cvar("qlx_raceMode", int) == 2:
                 ramp_jump = "1" if map_name == "dontlookdown" else "0"
