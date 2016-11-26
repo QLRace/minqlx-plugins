@@ -35,7 +35,7 @@ GAUNTLET_AND_MG = ("blockworld", "caep4", "climbworld", "df_etleague", "df_extre
                    "run139", "inder_inder", "quartz", "timelock3", "daytime", "blub", "aa_lum", "kairos_nosf",
                    "aa_torture", "cube_torture", "track_comp", "track_comp_barriers", "dfru_xlarve", "track", "gl",
                    "qportal", "heaven_or_hell", "cpu_egypt", "bug4", "sunsetpads", "hangtime2", "hangy67", "jjm2",
-                   "thisisamap", "telemaze", "xt4zy_nextone")
+                   "thisisamap", "telemaze", "xt4zy_nextone", "jrng")
 
 PLASMA = ("think1", "xproject", "plasmax", "wub_junk", "pgultimate", "tinyplams", "df_lickcells", "df_lickcells2")
 ROCKET = ("runstolfer", "charon", "charon_bw", "kozmini1", "kozmini2", "kozmini3", "kozmini4", "kozmini5", "kozmini6",
