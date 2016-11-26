@@ -371,6 +371,8 @@ class race(minqlx.Plugin):
         for steam_id in self.lagged:
             try:
                 p = self.player(steam_id)
+                if p is None:
+                    raise minqlx.NonexistentPlayerError
             except minqlx.NonexistentPlayerError:
                 delete.append(steam_id)
                 continue
