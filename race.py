@@ -17,7 +17,7 @@ PARAMS = ({}, {"weapons": "false"}, {"physics": "classic"}, {"physics": "classic
 OLDTOP_URL = "https://cdn.rawgit.com/QLRace/oldtop/master/oldtop/"
 
 GOTO_DISABLED = ("ndql", "bounce", "df_coldrun", "wernerjump", "puzzlemap", "track_comp", "track_comp_barriers",
-                 "track_comp_weap", "gl")
+                 "track_comp_weap", "gl", "10towers")
 HASTE = ("df_handbreaker4", "handbreaker4_long", "handbreaker", "df_piyofunjumps", "funjumpsmap", "df_luna", "insane1",
          "bounce", "df_nodown", "df_etleague", "df_extremepkr", "labyrinth", "airmaxjumps", "sarcasmjump", "criclejump",
          "df_verihard", "cursed_temple", "skacharohuth", "randommap", "just_jump_2", "just_jump_3", "criclejump",
@@ -35,7 +35,7 @@ GAUNTLET_AND_MG = ("blockworld", "caep4", "climbworld", "df_etleague", "df_extre
                    "run139", "inder_inder", "quartz", "timelock3", "daytime", "blub", "aa_lum", "kairos_nosf",
                    "aa_torture", "cube_torture", "track_comp", "track_comp_barriers", "dfru_xlarve", "track", "gl",
                    "qportal", "heaven_or_hell", "cpu_egypt", "bug4", "sunsetpads", "hangtime2", "hangy67", "jjm2",
-                   "thisisamap", "telemaze", "xt4zy_nextone", "jrng", "gothic")
+                   "thisisamap", "telemaze", "xt4zy_nextone", "jrng", "gothic", "10towers")
 
 PLASMA = ("think1", "xproject", "plasmax", "wub_junk", "pgultimate", "tinyplams", "df_lickcells", "df_lickcells2")
 ROCKET = ("runstolfer", "charon", "charon_bw", "kozmini1", "kozmini2", "kozmini3", "kozmini4", "kozmini5", "kozmini6",
@@ -114,7 +114,7 @@ class race(minqlx.Plugin):
         if factory in ("qlrace_turbo", "qlrace_classic"):
             if map_name in GAUNTLET_AND_MG:
                 self.set_cvar("g_startingWeapons", "3")
-                infinite = "1" if map_name in ("poptart", "climbworld", "qportal") else "0"
+                infinite = "1" if map_name in ("poptart", "climbworld", "qportal", "10towers") else "0"
                 self.set_cvar("g_infiniteAmmo", infinite)
             elif map_name in GRENADE:
                 self.set_cvar("g_startingWeapons", "11")
