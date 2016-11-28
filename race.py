@@ -750,7 +750,7 @@ class race(minqlx.Plugin):
     def cmd_loadpos(self, player, msg, channel):
         """Loads saved position."""
         if self.game.map.lower() in GOTO_DISABLED:
-            channel.reply("^1!loadpos is disabled on {}".format(self.game.map))
+            player.tell("^1!loadpos is disabled on {}".format(self.game.map))
             return minqlx.RET_STOP_ALL
 
         if player.team != "spectator":
