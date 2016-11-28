@@ -114,7 +114,7 @@ class race(minqlx.Plugin):
         if factory in ("qlrace_turbo", "qlrace_classic"):
             if map_name in GAUNTLET_AND_MG:
                 self.set_cvar("g_startingWeapons", "3")
-                infinite = "1" if map_name in ("poptart", "climbworld", "qportal", "10towers") else "0"
+                infinite = "1" if map_name in ("poptart", "climbworld", "qportal") else "0"
                 self.set_cvar("g_infiniteAmmo", infinite)
             elif map_name in GRENADE:
                 self.set_cvar("g_startingWeapons", "11")
@@ -205,6 +205,8 @@ class race(minqlx.Plugin):
 
             if map_name == "hangtime":
                 self.set_cvar("g_startingAmmo_mg", "1")
+            elif map_name == "10towers":
+                self.set_cvar("g_startingAmmo_mg", "-1")
             else:
                 self.set_cvar("g_startingAmmo_mg", "100")
 
