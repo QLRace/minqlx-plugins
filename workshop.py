@@ -20,7 +20,8 @@ import minqlx
 
 MAP_IDS = {
     "sand_blaster": "810639815",
-    "r7_drz": "810640089"
+    "r7_drz": "810640089",
+    "daanstrafe03": "810885203"
 }
 
 class workshop(minqlx.Plugin):
