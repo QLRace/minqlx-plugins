@@ -19,8 +19,8 @@
 import minqlx
 
 MAP_IDS = {
-    "sand_blaster": 810639815,
-    "r7_drz": 810640089
+    "sand_blaster": "810639815",
+    "r7_drz": "810640089"
 }
 
 class workshop(minqlx.Plugin):
@@ -30,6 +30,6 @@ class workshop(minqlx.Plugin):
 
     def handle_map(self, map, factory):
         if map in MAP_IDS:
-            self.game.workshop_items += MAP_IDS[map]
+            self.game.workshop_items += [MAP_IDS[map]]
 
         self.game.workshop_items += minqlx.Plugin.get_cvar("qlx_workshopReferences", list)
