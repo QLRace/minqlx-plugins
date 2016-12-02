@@ -18,12 +18,18 @@
 
 import minqlx
 
+MAP_IDS = {
+    "sand_blaster": 810639815,
+    "r7_drz": 810640089
+}
+
 class workshop(minqlx.Plugin):
     def __init__(self):
         self.add_hook("map", self.handle_map)
-
         self.set_cvar_once("qlx_workshopReferences", "")
 
-    def handle_map(self, *args, **kwargs):
-        # Reference our custom workshop items.
+    def handle_map(self, map, factory):
+        if map in MAP_IDS:
+            self.game.workshop_items += MAP_IDS[map]
+
         self.game.workshop_items += minqlx.Plugin.get_cvar("qlx_workshopReferences", list)
