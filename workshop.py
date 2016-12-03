@@ -23,7 +23,11 @@ MAP_IDS = {
     "r7_drz": "810640089",
     "daanstrafe03": "810885203",
     "r7_suburbs": "811243819",
-    "r7_mixture": "811244172"
+    "r7_mixture": "811244172",
+    "r7_yaq1": "811564197",
+    "r7_yaq2": "811564197",
+    "r7_yaq3": "811564197",
+    "mu_nood": "811564505"
 }
 
 class workshop(minqlx.Plugin):
