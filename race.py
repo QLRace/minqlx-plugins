@@ -25,7 +25,7 @@ HASTE = ("df_handbreaker4", "handbreaker4_long", "handbreaker", "df_piyofunjumps
          "snorjumpb1", "snorjump2", "piyojump2", "woftct", "apex", "runkull", "snakejumps2", "applejump_b1",
          "zerojumps_b1", "bumblbee", "r7_golem")
 
-GAUNTLET_ONLY = ("k4n", "ndql", "dfwc_xlarve")
+GAUNTLET_ONLY = ("k4n", "ndql", "dfwc_xlarve", "kairos_jackson")
 GAUNTLET_AND_MG = ("blockworld", "caep4", "climbworld", "df_etleague", "df_extremepkr", "df_handbreaker4", "df_lickape",
                    "df_lickfudge", "df_lickhq", "df_lickrevived", "df_lickrevived2", "df_licksux", "df_nodown",
                    "df_o3jvelocity", "df_palmslane", "df_piyofunjumps", "df_qsnrun", "df_verihard", "drtrixiipro",
