@@ -27,7 +27,9 @@ MAP_IDS = {
     "r7_yaq1": "811564197",
     "r7_yaq2": "811564197",
     "r7_yaq3": "811564197",
-    "mu_nood": "811564505"
+    "mu_nood": "811564505",
+    "speedyctf": "812997654",
+    "kairos_jackson": "812995502"
 }
 
 class workshop(minqlx.Plugin):
