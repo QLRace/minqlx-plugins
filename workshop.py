@@ -29,8 +29,10 @@ MAP_IDS = {
     "r7_yaq3": "811564197",
     "mu_nood": "811564505",
     "speedyctf": "812997654",
-    "kairos_jackson": "812995502"
+    "kairos_jackson": "812995502",
+    "xt4zy_trythis": "816740916"
 }
+
 
 class workshop(minqlx.Plugin):
     def __init__(self):
