@@ -30,7 +30,8 @@ MAP_IDS = {
     "mu_nood": "811564505",
     "speedyctf": "812997654",
     "kairos_jackson": "812995502",
-    "xt4zy_trythis": "816740916"
+    "xt4zy_trythis": "816740916",
+    "aurora_beamclimb": "815852629"
 }
 
 
