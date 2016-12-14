@@ -25,23 +25,22 @@ HASTE = ("df_handbreaker4", "handbreaker4_long", "handbreaker", "df_piyofunjumps
          "snorjumpb1", "snorjump2", "piyojump2", "woftct", "apex", "runkull", "snakejumps2", "applejump_b1",
          "zerojumps_b1", "bumblbee", "r7_golem", "r7_endless")
 
-GAUNTLET_ONLY = ("k4n", "ndql", "dfwc_xlarve", "kairos_jackson")
-GAUNTLET_AND_MG = ("blockworld", "caep4", "climbworld", "df_etleague", "df_extremepkr", "df_handbreaker4", "df_lickape",
-                   "df_lickfudge", "df_lickhq", "df_lickrevived", "df_lickrevived2", "df_licksux", "df_nodown",
-                   "df_o3jvelocity", "df_palmslane", "df_piyofunjumps", "df_qsnrun", "df_verihard", "drtrixiipro",
-                   "hangtime", "ingus", "marvin", "northrun", "pea_impostor", "poptart", "purpletorture", "r7_pyramid",
-                   "raveroll", "sl1k_tetris_easy", "snorjumpb1", "sodomia", "timelock2", "timelock4", "vanilla_03",
-                   "vanilla_04", "vanilla_07", "vanilla_10", "walkathon", "weirdwild", "wraiths", "yellowtorture",
-                   "run139", "inder_inder", "quartz", "timelock3", "daytime", "blub", "aa_lum", "kairos_nosf",
-                   "aa_torture", "cube_torture", "track_comp", "track_comp_barriers", "dfru_xlarve", "track", "gl",
-                   "qportal", "heaven_or_hell", "cpu_egypt", "bug4", "sunsetpads", "hangtime2", "hangy67", "jjm2",
-                   "thisisamap", "telemaze", "xt4zy_nextone", "jrng", "10towers", "daanstrafe01", "daanstrafe02",
-                   "daanstrafe03", "xt4zy_trythis", "inder_stalker2")
+G_ONLY = ("k4n", "ndql", "dfwc_xlarve", "kairos_jackson")
+G_AND_MG = ("blockworld", "caep4", "climbworld", "df_etleague", "df_extremepkr", "df_handbreaker4", "df_lickape",
+            "df_lickfudge", "df_lickhq", "df_lickrevived", "df_lickrevived2", "df_licksux", "df_nodown",
+            "df_o3jvelocity", "df_palmslane", "df_piyofunjumps", "df_qsnrun", "df_verihard", "drtrixiipro", "hangtime",
+            "ingus", "marvin", "northrun", "pea_impostor", "poptart", "purpletorture", "r7_pyramid", "raveroll",
+            "sl1k_tetris_easy", "snorjumpb1", "sodomia", "timelock2", "timelock4", "vanilla_03", "vanilla_04",
+            "vanilla_07", "vanilla_10", "walkathon", "weirdwild", "wraiths", "yellowtorture", "run139", "inder_inder",
+            "quartz", "timelock3", "daytime", "blub", "aa_lum", "kairos_nosf", "aa_torture", "cube_torture",
+            "track_comp", "track_comp_barriers", "dfru_xlarve", "track", "gl", "qportal", "heaven_or_hell", "cpu_egypt",
+            "bug4", "sunsetpads", "hangtime2", "hangy67", "jjm2", "thisisamap", "telemaze", "xt4zy_nextone", "jrng",
+            "10towers", "daanstrafe01", "daanstrafe02", "daanstrafe03", "xt4zy_trythis", "inder_stalker2")
 
-PLASMA = ("think1", "xproject", "plasmax", "wub_junk", "pgultimate", "tinyplams", "df_lickcells", "df_lickcells2")
-ROCKET = ("runstolfer", "charon", "charon_bw", "kozmini1", "kozmini2", "kozmini3", "kozmini4", "kozmini5", "kozmini6",
-          "kozmini7", "kozmini8", "jumpspace")
-GRENADE = ("grenadorade", "uprising", "xlarve06")
+PG = ("think1", "xproject", "plasmax", "wub_junk", "pgultimate", "tinyplams", "df_lickcells", "df_lickcells2")
+RL = ("runstolfer", "charon", "charon_bw", "kozmini1", "kozmini2", "kozmini3", "kozmini4", "kozmini5", "kozmini6",
+      "kozmini7", "kozmini8", "jumpspace")
+GL = ("grenadorade", "uprising", "xlarve06")
 
 _RE_POWERUPS = re.compile(r'print ".+\^3 got the (Haste|Battle Suit|Quad Damage)!\^7\n"')
 
@@ -113,21 +112,21 @@ class race(minqlx.Plugin):
         self.current_frame = 0
 
         if factory in ("qlrace_turbo", "qlrace_classic"):
-            if map_name in GAUNTLET_AND_MG:
+            if map_name in G_AND_MG:
                 self.set_cvar("g_startingWeapons", "3")
                 infinite = "1" if map_name in ("poptart", "climbworld", "qportal") else "0"
                 self.set_cvar("g_infiniteAmmo", infinite)
-            elif map_name in GRENADE:
+            elif map_name in GL:
                 self.set_cvar("g_startingWeapons", "11")
                 infinite = "0" if map_name in ("uprising", "xlarve06") else "1"
                 self.set_cvar("g_infiniteAmmo", infinite)
-            elif map_name in GAUNTLET_ONLY:
+            elif map_name in G_ONLY:
                 self.set_cvar("g_startingWeapons", "1")
                 self.set_cvar("g_infiniteAmmo", "0")
-            elif map_name in PLASMA:
+            elif map_name in PG:
                 self.set_cvar("g_startingWeapons", "131")
                 self.set_cvar("g_infiniteAmmo", "1")
-            elif map_name in ROCKET:
+            elif map_name in RL:
                 self.set_cvar("g_startingWeapons", "19")
                 self.set_cvar("g_infiniteAmmo", "1")
             elif map_name == "rocketx":
@@ -404,6 +403,7 @@ class race(minqlx.Plugin):
 
     def cmd_pb(self, player, msg, channel):
         """Outputs the player's personal best time for a map."""
+
         @minqlx.thread
         def pb(map_name):
             records = self.get_records(map_name, weapons)
@@ -429,6 +429,7 @@ class race(minqlx.Plugin):
         """Outputs the x rank time for a map. Default rank
         if none is given is 1.
         """
+
         @minqlx.thread
         def get_rank(map_name):
             records = self.get_records(map_name, weapons)
@@ -568,6 +569,7 @@ class race(minqlx.Plugin):
         """Outputs the ranks and times of everyone on
         the server for a map.
         """
+
         @minqlx.thread
         def get_all(map_name):
             records = self.get_records(map_name, weapons).records
@@ -596,6 +598,7 @@ class race(minqlx.Plugin):
 
     def cmd_ranktime(self, player, msg, channel):
         """Outputs which rank a time would be."""
+
         @minqlx.thread
         def ranktime(map_name):
             records = self.get_records(map_name, weapons)
@@ -628,6 +631,7 @@ class race(minqlx.Plugin):
 
     def cmd_avg(self, player, msg, channel):
         """Outputs a player average rank."""
+
         @minqlx.thread
         def avg():
             """API Doc: https://qlrace.com/apidoc/1.0/records/player.html"""
@@ -679,6 +683,7 @@ class race(minqlx.Plugin):
 
     def cmd_recent(self, player, msg, channel):
         """Outputs the most recent maps from QLRace.com"""
+
         @minqlx.thread
         def recent():
             """API Doc: https://qlrace.com/apidoc/1.0/Maps/maps.html"""
@@ -767,6 +772,7 @@ class race(minqlx.Plugin):
     def cmd_maps(self, player, msg, channel):
         """Tells player all the maps which have a record on QLRace.com.
         Outputs in 4 columns so you are not spammed with 450+ lines in console."""
+
         @minqlx.thread
         def output_maps():
             for i, (a, b, c, d) in enumerate(zip(maps[::4], maps[1::4], maps[2::4], maps[3::4])):
