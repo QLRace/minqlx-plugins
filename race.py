@@ -23,7 +23,7 @@ HASTE = ("df_handbreaker4", "handbreaker4_long", "handbreaker", "df_piyofunjumps
          "df_verihard", "cursed_temple", "skacharohuth", "randommap", "just_jump_2", "just_jump_3", "criclejump",
          "eatme", "wernerjump", "bloodydave", "tranquil", "et_map2", "et_map3", "et_map4", "et_map5", "zeel_ponpon",
          "snorjumpb1", "snorjump2", "piyojump2", "woftct", "apex", "runkull", "snakejumps2", "applejump_b1",
-         "zerojumps_b1", "bumblbee", "r7_golem", "r7_endless")
+         "zerojumps_b1", "bumblbee", "r7_golem", "r7_endless", "mj_xlarve")
 
 G_ONLY = ("k4n", "ndql", "dfwc_xlarve", "kairos_jackson")
 G_AND_MG = ("blockworld", "caep4", "climbworld", "df_etleague", "df_extremepkr", "df_handbreaker4", "df_lickape",
@@ -126,7 +126,8 @@ class race(minqlx.Plugin):
                 self.set_cvar("g_infiniteAmmo", "0")
             elif map_name in PG:
                 self.set_cvar("g_startingWeapons", "131")
-                self.set_cvar("g_infiniteAmmo", "1")
+                infinite = "0" if map_name == "mj_xlarve" else "1"
+                self.set_cvar("g_infiniteAmmo", infinite)
             elif map_name in RL:
                 self.set_cvar("g_startingWeapons", "19")
                 self.set_cvar("g_infiniteAmmo", "1")
@@ -232,6 +233,8 @@ class race(minqlx.Plugin):
                 self.set_cvar("g_startingAmmo_pg", "1")
             elif map_name == "tomb":
                 self.set_cvar("g_startingAmmo_pg", "5")
+            elif map_name == "mj_xlarve":
+                self.set_cvar("g_startingAmmo_pg", "150")
             else:
                 self.set_cvar("g_startingAmmo_pg", "50")
 
