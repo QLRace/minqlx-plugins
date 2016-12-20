@@ -32,8 +32,9 @@ class workshop(minqlx.Plugin):
         self.add_hook("map", self.handle_map)
         self.set_cvar_once("qlx_workshopReferences", "")
 
-    def handle_map(self, map, factory):
-        if map in MAP_IDS:
-            self.game.workshop_items += [str(MAP_IDS[map])]
+    def handle_map(self, map_name, factory):
+        map_id = MAP_IDS.get(map_name.lower())
+        if map_id:
+            self.game.workshop_items += [map_id]
 
         self.game.workshop_items += minqlx.Plugin.get_cvar("qlx_workshopReferences", list)
