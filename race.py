@@ -112,165 +112,166 @@ class race(minqlx.Plugin):
         self.lagged = {}
         self.current_frame = 0
 
-        if factory in ("qlrace_turbo", "qlrace_classic"):
-            if map_name in G_AND_MG:
-                self.set_cvar("g_startingWeapons", "3")
-                infinite = "1" if map_name in ("poptart", "climbworld", "qportal") else "0"
-                self.set_cvar("g_infiniteAmmo", infinite)
-            elif map_name in GL:
-                self.set_cvar("g_startingWeapons", "11")
-                infinite = "0" if map_name in ("uprising", "xlarve06") else "1"
-                self.set_cvar("g_infiniteAmmo", infinite)
-            elif map_name in G_ONLY:
-                self.set_cvar("g_startingWeapons", "1")
-                self.set_cvar("g_infiniteAmmo", "0")
-            elif map_name in PG:
-                self.set_cvar("g_startingWeapons", "131")
-                infinite = "0" if map_name == "mj_xlarve" else "1"
-                self.set_cvar("g_infiniteAmmo", infinite)
-            elif map_name in RL:
-                self.set_cvar("g_startingWeapons", "19")
-                self.set_cvar("g_infiniteAmmo", "1")
-            elif map_name == "rocketx":
-                self.set_cvar("g_startingWeapons", "17")
-                self.set_cvar("g_infiniteAmmo", "1")
-            elif map_name == "bfgx":
-                self.set_cvar("g_startingWeapons", "257")
-                self.set_cvar("g_infiniteAmmo", "1")
-            elif map_name == "nmn":
-                self.set_cvar("g_startingWeapons", "16")
-                self.set_cvar("g_infiniteAmmo", "1")
-            elif map_name == "wsm":
-                self.set_cvar("g_startingWeapons", "129")
-                self.set_cvar("g_infiniteAmmo", "0")
-            elif map_name == "spiderman":
-                self.set_cvar("g_startingWeapons", "515")
-                self.set_cvar("g_infiniteAmmo", "0")
-            elif map_name == "runkull":
-                self.set_cvar("g_startingWeapons", "128")
-                self.set_cvar("g_infiniteAmmo", "1")
-            elif map_name == "tr1ckhouse":
-                self.set_cvar("g_startingWeapons", "411")
-                self.set_cvar("g_infiniteAmmo", "1")
-            elif map_name == "zalupa":
-                self.set_cvar("g_startingWeapons", "64")
-                self.set_cvar("g_infiniteAmmo", "0")
-            elif map_name == "track_comp_weap":
-                self.set_cvar("g_startingWeapons", "91")
-                self.set_cvar("g_infiniteAmmo", "0")
-            elif map_name == "tomb":
-                self.set_cvar("g_startingWeapons", "131")
-                self.set_cvar("g_infiniteAmmo", "0")
-            elif map_name == "bumblbee":
-                self.set_cvar("g_startingWeapons", "155")
-                self.set_cvar("g_infiniteAmmo", "1")
-            else:
-                self.set_cvar("g_startingWeapons", "147")
-                self.set_cvar("g_infiniteAmmo", "1")
+        self.set_starting_weapons(map_name)
+        self.set_starting_ammo(map_name)
 
-            if self.get_cvar("qlx_raceMode", int) == 0:
-                gl_v = "700" if map_name in ("k4n", "uprising", "jjm2") else "800"
-                self.set_cvar("g_velocity_gl", gl_v)
-                ramp_jump = "0" if map_name == "10towers" else "1"
-                self.set_cvar("pmove_rampJump", ramp_jump)
-            elif self.get_cvar("qlx_raceMode", int) == 2:
-                ramp_jump = "1" if map_name == "dontlookdown" else "0"
-                self.set_cvar("pmove_RampJump", ramp_jump)
+        if self.get_cvar("qlx_raceMode", int) == 0:
+            gl_v = "700" if map_name in ("k4n", "uprising", "jjm2") else "800"
+            self.set_cvar("g_velocity_gl", gl_v)
+            ramp_jump = "0" if map_name == "10towers" else "1"
+            self.set_cvar("pmove_rampJump", ramp_jump)
+        elif self.get_cvar("qlx_raceMode", int) == 2:
+            ramp_jump = "1" if map_name == "dontlookdown" else "0"
+            self.set_cvar("pmove_RampJump", ramp_jump)
 
-            if map_name == "puzzlemap":
-                self.set_cvar("g_infiniteAmmo", "1")
-                self.set_cvar("g_startingWeapons", "3")
-                minqlx.load_plugin("puzzlemap")
-            else:
-                try:
-                    minqlx.unload_plugin("puzzlemap")
-                except minqlx.PluginUnloadError:
-                    pass
+        if map_name == "puzzlemap":
+            self.set_cvar("g_infiniteAmmo", "1")
+            self.set_cvar("g_startingWeapons", "3")
+            minqlx.load_plugin("puzzlemap")
+        else:
+            if "puzzlemap" in self.plugins:
+                minqlx.unload_plugin("puzzlemap")
 
-            if map_name == "walkathon":
-                self.set_cvar("g_respawn_delay_min", "1000")
-                self.set_cvar("g_respawn_delay_max", "1000")
-            else:
-                self.set_cvar("g_respawn_delay_min", "10")
-                self.set_cvar("g_respawn_delay_max", "10")
+        if map_name == "walkathon":
+            self.set_cvar("g_respawn_delay_min", "1000")
+            self.set_cvar("g_respawn_delay_max", "1000")
+        else:
+            self.set_cvar("g_respawn_delay_min", "10")
+            self.set_cvar("g_respawn_delay_max", "10")
 
-            if map_name == "pornstarghost3":
-                self.set_cvar("g_maxFlightFuel", "10000")
-            elif map_name == "tomb":
-                self.set_cvar("g_maxFlightFuel", "2500")
-            elif map_name == "tatmt_long":
-                self.set_cvar("g_maxFlightFuel", "500")
-            elif map_name == "bokluk":
-                self.set_cvar("g_maxFlightFuel", "3500")
-            else:
-                self.set_cvar("g_maxFlightFuel", "16000")
+        if map_name == "pornstarghost3":
+            self.set_cvar("g_maxFlightFuel", "10000")
+        elif map_name == "tomb":
+            self.set_cvar("g_maxFlightFuel", "2500")
+        elif map_name == "tatmt_long":
+            self.set_cvar("g_maxFlightFuel", "500")
+        elif map_name == "bokluk":
+            self.set_cvar("g_maxFlightFuel", "3500")
+        else:
+            self.set_cvar("g_maxFlightFuel", "16000")
 
-            if map_name == "hangtime":
-                self.set_cvar("g_startingAmmo_mg", "1")
-            elif map_name == "10towers":
-                self.set_cvar("g_startingAmmo_mg", "-1")
-            else:
-                self.set_cvar("g_startingAmmo_mg", "100")
+        if map_name == "gl":
+            if self.get_cvar("g_startingHealth", int) != 3000:
+                self.map_restart = True
+            self.set_cvar("g_startingHealth", "3000")
+        else:
+            self.set_cvar("g_startingHealth", "100")
 
-            if map_name in ("uprising", "xlarve06"):
-                self.set_cvar("g_startingAmmo_gl", "1")
-            else:
-                self.set_cvar("g_startingAmmo_gl", "10")
+        if map_name in ("track_comp", "track_comp_barriers"):
+            self.set_cvar("pmove_noPlayerClip", "0")
+            self.set_cvar("g_damage_g", "1")
+            self.set_cvar("g_damage_mg", "1")
+            self.set_cvar("g_knockback_g", "0")
+            self.set_cvar("g_knockback_mg", "0")
+        elif map_name == "track_comp_weap":
+            self.set_cvar("pmove_noPlayerClip", "0")
+            self.set_cvar("g_damage_g", "25")
+            self.set_cvar("g_damage_mg", "3")
+            self.set_cvar("g_damage_gl", "20")
+            self.set_cvar("g_damage_rl", "20")
+            self.set_cvar("g_damage_rg", "10")
+            self.set_cvar("g_knockback_g", "1.2")
+            self.set_cvar("g_knockback_mg", "0")
+            self.set_cvar("g_knockback_gl", "1.2")
+            self.set_cvar("g_knockback_gl_self", "0")
+            self.set_cvar("g_knockback_rl", "1")
+            self.set_cvar("g_knockback_rl_self", "0")
+            self.set_cvar("g_knockback_rg", "10")
+            self.set_cvar("g_splashdamage_gl", "20")
+            self.set_cvar("g_splashdamage_rl", "16")
+        else:
+            self.set_cvar("pmove_noPlayerClip", "1")
+            self.set_cvar("g_knockback_gl_self", "1.10")
+            self.set_cvar("g_knockback_rl_self", "1.10")
 
-            if map_name == "track_comp_weap":
-                self.set_cvar("g_startingAmmo_rl", "10")
-            else:
-                self.set_cvar("g_startingAmmo_rl", "5")
+    def set_starting_weapons(self, map_name):
+        if map_name in G_AND_MG:
+            self.set_cvar("g_startingWeapons", "3")
+            infinite = "1" if map_name in ("poptart", "climbworld", "qportal") else "0"
+            self.set_cvar("g_infiniteAmmo", infinite)
+        elif map_name in GL:
+            self.set_cvar("g_startingWeapons", "11")
+            infinite = "0" if map_name in ("uprising", "xlarve06") else "1"
+            self.set_cvar("g_infiniteAmmo", infinite)
+        elif map_name in G_ONLY:
+            self.set_cvar("g_startingWeapons", "1")
+            self.set_cvar("g_infiniteAmmo", "0")
+        elif map_name in PG:
+            self.set_cvar("g_startingWeapons", "131")
+            infinite = "0" if map_name == "mj_xlarve" else "1"
+            self.set_cvar("g_infiniteAmmo", infinite)
+        elif map_name in RL:
+            self.set_cvar("g_startingWeapons", "19")
+            self.set_cvar("g_infiniteAmmo", "1")
+        elif map_name == "rocketx":
+            self.set_cvar("g_startingWeapons", "17")
+            self.set_cvar("g_infiniteAmmo", "1")
+        elif map_name == "bfgx":
+            self.set_cvar("g_startingWeapons", "257")
+            self.set_cvar("g_infiniteAmmo", "1")
+        elif map_name == "nmn":
+            self.set_cvar("g_startingWeapons", "16")
+            self.set_cvar("g_infiniteAmmo", "1")
+        elif map_name == "wsm":
+            self.set_cvar("g_startingWeapons", "129")
+            self.set_cvar("g_infiniteAmmo", "0")
+        elif map_name == "spiderman":
+            self.set_cvar("g_startingWeapons", "515")
+            self.set_cvar("g_infiniteAmmo", "0")
+        elif map_name == "runkull":
+            self.set_cvar("g_startingWeapons", "128")
+            self.set_cvar("g_infiniteAmmo", "1")
+        elif map_name == "tr1ckhouse":
+            self.set_cvar("g_startingWeapons", "411")
+            self.set_cvar("g_infiniteAmmo", "1")
+        elif map_name == "zalupa":
+            self.set_cvar("g_startingWeapons", "64")
+            self.set_cvar("g_infiniteAmmo", "0")
+        elif map_name == "track_comp_weap":
+            self.set_cvar("g_startingWeapons", "91")
+            self.set_cvar("g_infiniteAmmo", "0")
+        elif map_name == "tomb":
+            self.set_cvar("g_startingWeapons", "131")
+            self.set_cvar("g_infiniteAmmo", "0")
+        elif map_name == "bumblbee":
+            self.set_cvar("g_startingWeapons", "155")
+            self.set_cvar("g_infiniteAmmo", "1")
+        else:
+            self.set_cvar("g_startingWeapons", "147")
+            self.set_cvar("g_infiniteAmmo", "1")
 
-            if map_name == "zalupa":
-                self.set_cvar("g_startingAmmo_rg", "30")
-            elif map_name == "track_comp_weap":
-                self.set_cvar("g_startingAmmo_rg", "10")
-            else:
-                self.set_cvar("g_startingAmmo_rg", "5")
+    def set_starting_ammo(self, map_name):
+        if map_name == "hangtime":
+            self.set_cvar("g_startingAmmo_mg", "1")
+        elif map_name == "10towers":
+            self.set_cvar("g_startingAmmo_mg", "-1")
+        else:
+            self.set_cvar("g_startingAmmo_mg", "100")
 
-            if map_name == "wsm":
-                self.set_cvar("g_startingAmmo_pg", "1")
-            elif map_name == "tomb":
-                self.set_cvar("g_startingAmmo_pg", "5")
-            elif map_name == "mj_xlarve":
-                self.set_cvar("g_startingAmmo_pg", "150")
-            else:
-                self.set_cvar("g_startingAmmo_pg", "50")
+        if map_name in ("uprising", "xlarve06"):
+            self.set_cvar("g_startingAmmo_gl", "1")
+        else:
+            self.set_cvar("g_startingAmmo_gl", "10")
+        if map_name == "track_comp_weap":
+            self.set_cvar("g_startingAmmo_rl", "10")
+        else:
+            self.set_cvar("g_startingAmmo_rl", "5")
 
-            if map_name == "gl":
-                if self.get_cvar("g_startingHealth", int) != 3000:
-                    self.map_restart = True
-                self.set_cvar("g_startingHealth", "3000")
-            else:
-                self.set_cvar("g_startingHealth", "100")
+        if map_name == "zalupa":
+            self.set_cvar("g_startingAmmo_rg", "30")
+        elif map_name == "track_comp_weap":
+            self.set_cvar("g_startingAmmo_rg", "10")
+        else:
+            self.set_cvar("g_startingAmmo_rg", "5")
 
-            if map_name in ("track_comp", "track_comp_barriers"):
-                self.set_cvar("pmove_noPlayerClip", "0")
-                self.set_cvar("g_damage_g", "1")
-                self.set_cvar("g_damage_mg", "1")
-                self.set_cvar("g_knockback_g", "0")
-                self.set_cvar("g_knockback_mg", "0")
-            elif map_name == "track_comp_weap":
-                self.set_cvar("pmove_noPlayerClip", "0")
-                self.set_cvar("g_damage_g", "25")
-                self.set_cvar("g_damage_mg", "3")
-                self.set_cvar("g_damage_gl", "20")
-                self.set_cvar("g_damage_rl", "20")
-                self.set_cvar("g_damage_rg", "10")
-                self.set_cvar("g_knockback_g", "1.2")
-                self.set_cvar("g_knockback_mg", "0")
-                self.set_cvar("g_knockback_gl", "1.2")
-                self.set_cvar("g_knockback_gl_self", "0")
-                self.set_cvar("g_knockback_rl", "1")
-                self.set_cvar("g_knockback_rl_self", "0")
-                self.set_cvar("g_knockback_rg", "10")
-                self.set_cvar("g_splashdamage_gl", "20")
-                self.set_cvar("g_splashdamage_rl", "16")
-            else:
-                self.set_cvar("pmove_noPlayerClip", "1")
-                self.set_cvar("g_knockback_gl_self", "1.10")
-                self.set_cvar("g_knockback_rl_self", "1.10")
+        if map_name == "wsm":
+            self.set_cvar("g_startingAmmo_pg", "1")
+        elif map_name == "tomb":
+            self.set_cvar("g_startingAmmo_pg", "5")
+        elif map_name == "mj_xlarve":
+            self.set_cvar("g_startingAmmo_pg", "150")
+        else:
+            self.set_cvar("g_startingAmmo_pg", "50")
 
     def handle_vote_called(self, player, vote, args):
         """Cancels the vote when a duplicated map is voted for."""
