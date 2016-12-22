@@ -38,7 +38,8 @@ G_AND_MG = ("blockworld", "caep4", "climbworld", "df_etleague", "df_extremepkr",
             "10towers", "daanstrafe01", "daanstrafe02", "daanstrafe03", "xt4zy_trythis", "inder_stalker2",
             "kairos_torture1", "kairos_torture2", "kairos_torture3", "boris_torture2")
 
-PG = ("think1", "xproject", "plasmax", "wub_junk", "pgultimate", "tinyplams", "df_lickcells", "df_lickcells2", "mj_xlarve")
+PG = ("think1", "xproject", "plasmax", "wub_junk", "pgultimate", "tinyplams", "df_lickcells", "df_lickcells2",
+      "mj_xlarve", "huntetris")
 RL = ("runstolfer", "charon", "charon_bw", "kozmini1", "kozmini2", "kozmini3", "kozmini4", "kozmini5", "kozmini6",
       "kozmini7", "kozmini8", "jumpspace")
 GL = ("grenadorade", "uprising", "xlarve06")
@@ -252,6 +253,7 @@ class race(minqlx.Plugin):
             self.set_cvar("g_startingAmmo_gl", "1")
         else:
             self.set_cvar("g_startingAmmo_gl", "10")
+
         if map_name == "track_comp_weap":
             self.set_cvar("g_startingAmmo_rl", "10")
         else:
@@ -408,7 +410,6 @@ class race(minqlx.Plugin):
 
     def cmd_pb(self, player, msg, channel):
         """Outputs the player's personal best time for a map."""
-
         @minqlx.thread
         def pb(map_name):
             records = self.get_records(map_name, weapons)
@@ -434,7 +435,6 @@ class race(minqlx.Plugin):
         """Outputs the x rank time for a map. Default rank
         if none is given is 1.
         """
-
         @minqlx.thread
         def get_rank(map_name):
             records = self.get_records(map_name, weapons)
@@ -574,7 +574,6 @@ class race(minqlx.Plugin):
         """Outputs the ranks and times of everyone on
         the server for a map.
         """
-
         @minqlx.thread
         def get_all(map_name):
             records = self.get_records(map_name, weapons).records
@@ -603,7 +602,6 @@ class race(minqlx.Plugin):
 
     def cmd_ranktime(self, player, msg, channel):
         """Outputs which rank a time would be."""
-
         @minqlx.thread
         def ranktime(map_name):
             records = self.get_records(map_name, weapons)
@@ -636,7 +634,6 @@ class race(minqlx.Plugin):
 
     def cmd_avg(self, player, msg, channel):
         """Outputs a player average rank."""
-
         @minqlx.thread
         def avg():
             """API Doc: https://qlrace.com/apidoc/1.0/records/player.html"""
@@ -688,7 +685,6 @@ class race(minqlx.Plugin):
 
     def cmd_recent(self, player, msg, channel):
         """Outputs the most recent maps from QLRace.com"""
-
         @minqlx.thread
         def recent():
             """API Doc: https://qlrace.com/apidoc/1.0/Maps/maps.html"""
@@ -777,7 +773,6 @@ class race(minqlx.Plugin):
     def cmd_maps(self, player, msg, channel):
         """Tells player all the maps which have a record on QLRace.com.
         Outputs in 4 columns so you are not spammed with 450+ lines in console."""
-
         @minqlx.thread
         def output_maps():
             for i, (a, b, c, d) in enumerate(zip(maps[::4], maps[1::4], maps[2::4], maps[3::4])):
