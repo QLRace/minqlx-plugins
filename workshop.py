@@ -23,7 +23,8 @@ MAP_IDS = {
     "r7_mixture": 811244172, "r7_yaq1": 811564197, "r7_yaq2": 811564197, "r7_yaq3": 811564197, "mu_nood": 811564505,
     "speedyctf": 812997654, "kairos_jackson": 812995502, "xt4zy_trythis": 816740916, "aurora_beamclimb": 815852629,
     "r7_endless": 817812429, "inder_xmas2": 817813328, "inder_stalker2": 817814056, "kairos_torture1": 818183735,
-    "kairos_torture2": 818183735, "kairos_torture3": 818183735, "boris_torture2": 818183882, "mj_xlarve": 822361969
+    "kairos_torture2": 818183735, "kairos_torture3": 818183735, "boris_torture2": 818183882, "mj_xlarve": 822361969,
+    "focus": 823508068, "huntetris": 823510134, "mjc02_1": 823510484
 }
 
 
