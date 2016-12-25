@@ -81,7 +81,7 @@ class race(minqlx.Plugin):
         self.add_command(("commands", "cmds", "help"), self.cmd_commands, priority=minqlx.PRI_HIGH)
 
         self.set_cvar_once("qlx_raceMode", "0")  # 0 = Turbo/PQL, 2 = Classic/VQL
-        self.set_cvar_once("qlx_raceBrand", "QLRace.com")
+        self.set_cvar_once("qlx_raceBrand", "QLRace.com")  # Can set to "" to not brand
 
         self.move_player = {}  # Queued !goto/!loadto positions. {steam_id: position}
         self.goto = {}  # Players which have used !goto/!loadpos. {steam_id: score}
@@ -106,12 +106,18 @@ class race(minqlx.Plugin):
         and move_player dicts.
         """
         map_name = map_name.lower()
-        self.brand_map(map_name)
+
+        if self.get_cvar("qlx_raceBrand"):
+            self.brand_map(map_name)
+
         self.get_maps()
         self.savepos = {}
         self.move_player = {}
         self.lagged = {}
         self.current_frame = 0
+
+        if self.game.factory not in ("qlrace_classic", "qlrace_turbo"):
+            return
 
         self.set_starting_weapons(map_name)
         self.set_starting_ammo(map_name)
