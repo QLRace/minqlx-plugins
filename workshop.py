@@ -26,7 +26,7 @@ MAP_IDS = {
     "kairos_torture2": 818183735, "kairos_torture3": 818183735, "boris_torture2": 818183882, "mj_xlarve": 822361969,
     "focus": 823508068, "huntetris": 823510134, "mjc02_1": 823510484, "daanstrafe04": 824947114,
     "acrobat_metal": 827383271, "acrobat_bridges": 827383946, "daanstrafe05": 827528750, "climborama": 828179707,
-    "getupthere": 828179998, "aa_oblige1": 829533653, "aa_skypads": 829533653
+    "getupthere": 828179998, "aa_oblige1": 829533653, "aa_skypads": 830005488
 }
 
 
