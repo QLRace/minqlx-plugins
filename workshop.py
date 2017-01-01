@@ -27,7 +27,7 @@ MAP_IDS = {
     "focus": 823508068, "huntetris": 823510134, "mjc02_1": 823510484, "daanstrafe04": 824947114,
     "acrobat_metal": 827383271, "acrobat_bridges": 827383946, "daanstrafe05": 827528750, "climborama": 828179707,
     "getupthere": 828179998, "aa_oblige1": 829533653, "aa_skypads": 830005488, "daanstrafe06": 830352170,
-    "aa_slope": 831020302
+    "aa_slope": 831020302, "aa_maze": 832001652
 }
 
 
