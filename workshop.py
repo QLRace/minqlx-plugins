@@ -16,6 +16,12 @@
 # You should have received a copy of the GNU General Public License
 # along with minqlx. If not, see <http://www.gnu.org/licenses/>.
 
+"""
+Modified version of Mino's workshop plugin which adds the workshop id
+of the current workshop_extra map to self.game.workshop_items
+See https://github.com/QLRace/server-settings/blob/master/download_workshop_extra.sh
+"""
+
 import minqlx
 
 MAP_IDS = {
