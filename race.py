@@ -37,7 +37,7 @@ G_AND_MG = ("blockworld", "caep4", "climbworld", "df_etleague", "df_extremepkr",
             "bug4", "sunsetpads", "hangtime2", "hangy67", "jjm2", "thisisamap", "telemaze", "xt4zy_nextone", "jrng",
             "10towers", "daanstrafe01", "daanstrafe02", "daanstrafe03", "xt4zy_trythis", "inder_stalker2",
             "kairos_torture1", "kairos_torture2", "kairos_torture3", "boris_torture2", "daanstrafe04", "daanstrafe05",
-            "climborama", "daanstrafe07")
+            "climborama", "daanstrafe07", "timewaste")
 
 PG = ("think1", "xproject", "plasmax", "wub_junk", "pgultimate", "tinyplams", "df_lickcells", "df_lickcells2",
       "mj_xlarve", "huntetris")
