@@ -35,7 +35,7 @@ MAP_IDS = {
     "getupthere": 828179998, "aa_oblige1": 829533653, "aa_skypads": 830005488, "daanstrafe06": 830352170,
     "aa_slope": 831020302, "aa_maze": 832001652, "daanstrafe07": 832923893, "aa_quake": 832209883,
     "pea_xweirdx": 850088922, "sdc_uk_01": 850731967, "pornstar_quickie3": 852060803, "timewaste": 852081302,
-    "bumpyland": 852175366, "dfwc2014_2": 852839568
+    "bumpyland": 852175366, "dfwc2014_2": 852839568, "pornvannestrafe1": 852978647
 }
 
 
