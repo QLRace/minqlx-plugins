@@ -36,7 +36,7 @@ MAP_IDS = {
     "aa_slope": 831020302, "aa_maze": 832001652, "daanstrafe07": 832923893, "aa_quake": 832209883,
     "pea_xweirdx": 850088922, "sdc_uk_01": 850731967, "pornstar_quickie3": 852060803, "timewaste": 852081302,
     "bumpyland": 852175366, "dfwc2014_2": 852839568, "pornvannestrafe1": 852978647, "dkr14": 853576545,
-    "apo2": 853576826
+    "apo2": 853576826, "mlctf1beta": 728029244, "hexq3ctf1": 610686214, "ctf_orange": 728522755, "asteroid": 610695633
 }
 
 
