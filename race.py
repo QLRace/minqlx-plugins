@@ -42,7 +42,7 @@ G_AND_MG = ("blockworld", "caep4", "climbworld", "df_etleague", "df_extremepkr",
 PG = ("think1", "xproject", "plasmax", "wub_junk", "pgultimate", "tinyplams", "df_lickcells", "df_lickcells2",
       "mj_xlarve", "huntetris")
 RL = ("runstolfer", "charon", "charon_bw", "kozmini1", "kozmini2", "kozmini3", "kozmini4", "kozmini5", "kozmini6",
-      "kozmini7", "kozmini8", "jumpspace")
+      "kozmini7", "kozmini8", "jumpspace", "pornstarghost2")
 GL = ("grenadorade", "uprising", "xlarve06")
 
 _RE_POWERUPS = re.compile(r'print ".+\^3 got the (Haste|Battle Suit|Quad Damage)!\^7\n"')
@@ -212,7 +212,8 @@ class race(minqlx.Plugin):
             self.set_cvar("g_infiniteAmmo", infinite)
         elif map_name in RL:
             self.set_cvar("g_startingWeapons", "19")
-            self.set_cvar("g_infiniteAmmo", "1")
+            infinite = "0" if map_name == "pornstarghost2" else "1"
+            self.set_cvar("g_infiniteAmmo", infinite)
         elif map_name == "rocketx":
             self.set_cvar("g_startingWeapons", "17")
             self.set_cvar("g_infiniteAmmo", "1")
@@ -265,6 +266,8 @@ class race(minqlx.Plugin):
 
         if map_name == "track_comp_weap":
             self.set_cvar("g_startingAmmo_rl", "10")
+        elif map_name == "pornstarghost2":
+            self.set_cvar("g_startingAmmo_rl", "1")
         else:
             self.set_cvar("g_startingAmmo_rl", "5")
 
