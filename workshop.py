@@ -38,6 +38,8 @@ MAP_IDS = {
     "bumpyland": 852175366, "dfwc2014_2": 852839568, "pornvannestrafe1": 852978647, "dkr14": 853576545,
     "apo2": 853576826, "mlctf1beta": 728029244, "hexq3ctf1": 610686214, "ctf_orange": 728522755, "asteroid": 610695633,
     "airmaxjumps2": 865244047
+    "apo2": 853576826, "mlctf1beta": 728029244, "hexq3ctf1": 610686214, "ctf_orange": 728522755, "asteroid": 610695633,
+    "pornstarghost2": 858065015, "airmaxjumps2": 865244047"
 }
 
 
