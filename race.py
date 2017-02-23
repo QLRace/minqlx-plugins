@@ -385,29 +385,6 @@ class race(minqlx.Plugin):
             ms = (self.current_frame - self.frame[p]) * 25
             self.player(p).center_print(race.time_string(ms))
 
-        for p in self.teams()['free']:
-            if p.steam_id not in self.lagged and p.ping >= 990:
-                p.velocity(x=0, y=0, z=0)
-                self.lagged[p.steam_id] = p.state.position
-
-        delete = []
-        for steam_id in self.lagged:
-            try:
-                p = self.player(steam_id)
-                if p is None:
-                    raise minqlx.NonexistentPlayerError
-            except minqlx.NonexistentPlayerError:
-                delete.append(steam_id)
-                continue
-
-            if p.ping < 990:
-                minqlx.set_position(p.id, self.lagged[steam_id])
-                p.velocity(x=0, y=0, z=0)
-                delete.append(steam_id)
-
-        for steam_id in delete:
-            del self.lagged[steam_id]
-
         # makes new dict with dead players removed
         self.goto = {p: score for p, score in self.goto.items() if self.player(p).health > 0}
 
